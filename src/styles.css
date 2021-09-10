@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+
+.login-content{
+    padding: 2%;
+}
+
+.users {
+    overflow-y: scroll;
+    height: 500px;
+    background-color: lightgray;
+}
+
+.chat {
+    height: 450px;
+    background: cadetblue;
+    overflow-y: scroll;
+}
+
+.my-message {
+    max-width: 90%;
+    width: fit-content;
+    background-color: green;
+    margin-left: auto;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+    padding: 5px;
+}
+
+.external-message {
+    max-width: 80%;
+    width: fit-content;
+    background-color: yellow;
+    margin: 5px;
+    border-radius: 3px;
+    padding: 5px;
+}
