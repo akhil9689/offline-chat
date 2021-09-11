@@ -13,28 +13,33 @@
 
 .chat {
     height: 450px;
-    background: cadetblue;
+    background: rgb(255 255 255 / 30%);
     overflow-y: scroll;
+    border-radius: 15px;
+    padding: 10px;
+    box-shadow: inset 0 0 5px 0.1px rgb(0 0 0 / 80%);
 }
 
 .my-message {
     max-width: 90%;
     width: fit-content;
-    background-color: green;
+    background-color: #d5f5ff;
     margin-left: auto;
     margin-right: 5px;
     margin-top: 5px;
     margin-bottom: 5px;
     border-radius: 3px;
     padding: 5px;
-    color: white;
+    overflow-wrap: break-word;
 }
 
 .external-message {
     max-width: 80%;
     width: fit-content;
-    background-color: yellow;
+    background-color: #023e8a;
+    color: white;
     margin: 5px;
     border-radius: 3px;
     padding: 5px;
+    overflow-wrap: break-word;
 }
