@@ -1,26 +1,23 @@
 <!-- <p>chat works!</p> -->
 <div class="login-content">
     <div class="row">
-        <div class="col-4 offset-5">
+        <div class="col-8 offset-2" style="text-align: center;">
             <h3>Welcome {{username}}</h3>
         </div>
-        <div class="col-1 offset-2">
+        <div class="col-1 offset-1">
             <a href="#" (click)="logout()">logout</a>
         </div>
     </div>
-    <div class="row" style="background: aliceblue;">
-        <div class="col-3">
+    <div class="row">
+        <div class="col-3" style="background: bisque;">
             Chats
             <div class="users">
                 <div class="list-group">
                     <button type="button" class="list-group-item" style="text-align: inherit;" *ngFor="let chat of userChats;let i = index" (click)="clickedChatUser(chat,i)" [ngStyle]="{'background':i==chatIndex?'lightsteelblue':''}">{{chat.user}}</button>
-                    <!-- <button type="button" class="list-group-item" style="text-align: inherit;">A second item</button>
-                    <button type="button" class="list-group-item" style="text-align: inherit;">A third button item</button>
-                    <button type="button" class="list-group-item" style="text-align: inherit;">A fourth button item</button> -->
                 </div>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-6" style="background: bisque;border-radius: 0px 15px 15px 0px;">
             Chat
             <div *ngIf="!showChat" style="height: 500px;height: 500px;padding: 50% 0% 0% 31%;">
                 Start a new chat
@@ -29,37 +26,6 @@
                 <div class="chat">
                     <div></div>
                     <div *ngFor="let message of messages" [ngClass]="{'my-message':message.from==username,'external-message':message.from!=username}">{{message.message}}</div>
-                    <!-- <div>hi</div> -->
-                    <!-- <div>hi</div> -->
-                    <!-- <div style="width: 100%;">
-                        <div class="my-message">
-                            hi
-                        </div>
-                    </div>
-                    <div style="width: 100%;">
-                        <div class="external-message">
-                            hi
-                        </div>
-                    </div> -->
-
-                    <!-- <div class="row" style="width: 100%;">
-                        <div style="width: 90%;
-                        background-color: green;
-                        float: right;
-                        margin: 10px;
-                        border-radius: 3px;">
-                            hi
-                        </div>
-                    </div>
-                    <div class="row" style="width: 100%;">
-                        <div style="width: 90%;
-                        background-color: yellow;
-                        margin: 10px;
-                        border-radius: 3px;">
-                            hi
-                        </div>
-                    </div> -->
-                    
                 </div>
                 <div class="row">
                     <form class="row g-3" style="margin-top: 0px;" [formGroup]="messageForm" (submit)="sendMessage()">
@@ -74,16 +40,15 @@
                 </div>
             </div>
         </div>
-        <div class="col-3">
+        <div class="col-3" style="background: aquamarine;border-radius: 15px 0 0 15px;width: 24%;margin-left: 1%;">
             <div>
-                Online Users <span class="badge bg-success rounded-pill">{{onlineUsers.length}}</span>
-            </div>
-            <div class="users">
-                <div class="list-group" style="margin: 10px;">
-                    <button type="button" class="list-group-item" style="text-align: inherit;" *ngFor="let user of onlineUsers" (click)="clickedOnlineUser(user)">{{user.username}}</button>
-                    <!-- <button type="button" class="list-group-item" style="text-align: inherit;">A second item</button>
-                    <button type="button" class="list-group-item" style="text-align: inherit;">A third button item</button>
-                    <button type="button" class="list-group-item" style="text-align: inherit;">A fourth button item</button> -->
+                <div>
+                    Online Users <span class="badge bg-success rounded-pill">{{onlineUsers.length}}</span>
+                </div>
+                <div class="users">
+                    <div class="list-group" style="margin: 10px;">
+                        <button type="button" class="list-group-item" style="text-align: inherit;" *ngFor="let user of onlineUsers" (click)="clickedOnlineUser(user)">{{user.username}}</button>
+                    </div>
                 </div>
             </div>
         </div>

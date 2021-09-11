@@ -62,9 +62,7 @@ export class ChatComponent implements OnInit {
     if(this.username) {
       this.dbService.getAllByIndex("users","isOnline",IDBKeyRange.only(1))
       .subscribe((users) => {
-        // console.log("users",users);
         this.onlineUsers = users.filter(x => x["username"]!=this.username);
-        // console.log("onlineUsers",this.onlineUsers);
       })
     }
   }
@@ -73,7 +71,6 @@ export class ChatComponent implements OnInit {
     if(this.username) {
       this.dbService.getByIndex("chats","username",this.username)
       .subscribe((chat) => {
-        // console.log("chat",chat);
         if(chat) {
           this.chat = chat;
           this.userChats = chat["chats"];
@@ -82,39 +79,15 @@ export class ChatComponent implements OnInit {
         }
       })
     }
-    // this.chat = {
-    //   "username":"akhil",
-    //   "chats":[
-    //     {
-    //       "user":"gangula",
-    //       "messages": [
-    //         {
-    //           from:"gangula",
-    //           message: "gangula"
-    //         },
-    //         {
-    //           from:"akhil",
-    //           message:"akhil"
-    //         }
-    //       ]
-    //     }
-    //   ]
-    // };
-    // this.userChats = this.chat["chats"];
   }
 
   sendMessage() {
-    // console.log("form",this.messageForm);
     if(this.messageForm.valid) {
       this.messages.push({from:this.username,message:this.messageForm.value.message})
-      // console.log("messages",this.messages);
       this.userChats[this.chatIndex]["messages"] = this.messages;
-      // console.log("userChats",this.userChats);
       this.chat["chats"] = this.userChats;
-      // console.log("chat",this.chat);
       this.dbService.update("chats",this.chat)
       .subscribe((chat) => {
-        // console.log("chat",chat);
         this.chat = chat[chat.findIndex(x=>x["username"]==this.username)];
         this.dbService.getByIndex("chats","username",this.userChats[this.chatIndex]["user"])
         .subscribe((chat) => {
@@ -184,9 +157,6 @@ export class ChatComponent implements OnInit {
           }
         })
       })
-      // this.messageForm.get("message").reset();
-      // console.log(this.messageForm.get("message"))
-      // this.channel.postMessage({action:"message"});
     }
   }
 
@@ -199,7 +169,6 @@ export class ChatComponent implements OnInit {
           user["isOnline"] = 0;
           this.dbService.update("users", user)
           .subscribe((data)=> {
-            // console.log("data",data);
             this.channel.postMessage({action:"userAddedOrRemoved"});
             this.router.navigateByUrl("/login");
           })
@@ -216,8 +185,6 @@ export class ChatComponent implements OnInit {
   }
 
   clickedChatUser(chat, index) {
-    // console.log("chat",chat);
-    // console.log("index",index);
     this.showChat = true;
     this.messages = chat.messages;
     this.chatIndex = index;
@@ -225,21 +192,15 @@ export class ChatComponent implements OnInit {
 
   clickedOnlineUser(user) {
     if(this.chat) {
-      // console.log("chat",this.chat);
-      // console.log("chat.chats",this.chat["chats"]);
-      // console.log("user",user);
-      // console.log("index",this.chat["chats"].findIndex(x=>x.user == user.username))
       let index = this.chat["chats"].findIndex(x=>x.user == user.username);
       if(index>-1) {
         this.userChats = this.chat["chats"];
-        // console.log("userchats",this.userChats);
         let userIndex = this.userChats.findIndex(x=>x["user"]==user.username)
         this.messages = this.userChats[userIndex]["messages"];
         this.chatIndex = userIndex;
       } else {
         this.chat["chats"].push({"user":user.username,"messages":[]});
         this.userChats = this.chat["chats"];
-        // console.log("userchats",this.userChats);
         let userIndex = this.userChats.findIndex(x=>x["user"]==user.username)
         this.messages = this.userChats[userIndex]["messages"];
         this.chatIndex = userIndex;
@@ -258,7 +219,6 @@ export class ChatComponent implements OnInit {
       this.messages = this.userChats[0]["messages"];
       this.chatIndex = 0;
     }
-    // this.userChats.push({user:user.username,messages:[]});
     this.showChat = true;
   }
 

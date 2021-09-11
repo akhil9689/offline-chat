@@ -21,41 +21,6 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // let username = sessionStorage.getItem("username");
-    // if(username)
-    //   this.router.navigateByUrl("/chat");
-    // this.dbService.getAllByIndex("users","isOnline",IDBKeyRange.)
-    // .subscribe((users) => {
-    //   console.log("users",users);
-    // })
-    this.dbService.getByIndex("chats","username",["akhil"])
-    .subscribe((user) => {
-      console.log("user",user);
-    })
-    // this.dbService.addItem("chats",{
-    //   username: ["akhil","gangula"],
-    //   messages: [{from:"akhil",message:"message1"},{from:"gangula",message:"message2"}]
-    // })
-    // .subscribe((item)=> {
-    //   console.log("item",item);
-    // },(err)=> {
-    //   console.log("err",err);
-    // })
-    // this.dbService.updateByKey("users",{
-    //   "isOnline": 1
-    // },"isOnline")
-    // .subscribe((data)=> {
-    //   console.log("data",data);
-    // })
-
-    // this.dbService.update("users", {
-    //   "isOnline":1,
-    //   "username": "gangula",
-    //   "id": 2
-    // })
-    // .subscribe((data)=> {
-    //   console.log("data",data);
-    // })
   }
 
   login() {
@@ -64,7 +29,6 @@ export class LoginComponent implements OnInit {
       console.log("username",this.loginForm);
       this.dbService.getByIndex("users","username",this.loginForm.value.username)
       .subscribe((user) => {
-        // console.log("user",user);
         if(user) {
           this.gotoChat(user);
         } else {
